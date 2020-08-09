@@ -81,7 +81,7 @@ public class ObjectPool : MonoSingleton<ObjectPool>
         return Instance ? Instance.InternalSpawn(prefab, Vector3.zero, Quaternion.identity) : null;
     }
 
-    public void Despawn(GameObject obj)
+    public static void Despawn(GameObject obj)
     {
         Instance?.InternalDespawn(obj);
     }

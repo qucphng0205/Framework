@@ -6,6 +6,8 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T
     public static bool IsInitialized { get; private set; }
     public static bool isAppClosing = false;
 
+    [SerializeField] bool dontDestroyOnLoad = false;
+
     public static T Instance
     {
         get
@@ -64,7 +66,10 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T
         DontDestroyOnLoad(gameObject);
     }
 
-    public virtual void Init() { }
+    protected virtual void Init() {
+        if (dontDestroyOnLoad)
+            DontDestroy();
+    }
 
     protected virtual void OnDestroy()
     {

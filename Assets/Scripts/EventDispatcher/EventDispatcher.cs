@@ -4,13 +4,16 @@ using UnityEngine;
 using System;
 
 public enum EventID {
+    LoadingSuccessful,
+    LoadingFailed,
+    LoadingProgress
 }
 
 public class EventDispatcher : MonoSingleton<EventDispatcher>
 {
     Dictionary<EventID, Action<object>> _listeners = new Dictionary<EventID, Action<object>>();
 
-    public override void Init()
+    protected override void Init()
     {
         DontDestroy();
     }
